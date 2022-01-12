@@ -11,7 +11,7 @@ router.post('/register', userController.register)
 // login staff
 router.post('/login', userController.login)
 
-
+// https://agro-me.herokuapp.com/
 
 
 // /** All get request *///////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ router.put('/add-product', userController.addProduct)
 
 
 // remove vehicle
-router.put('/remove-product', userController.removeVehicle)
+router.put('/remove-product', userController.removeProduct)
 
 
 // change password
