@@ -195,12 +195,10 @@ exports.editUser = async (req,res,next) => {
 exports.addProduct = async (req,res,next) => {
   const {username,product} = req.body
   product.productId = uuid()
-  product.month = new Date().getMonth() + 1
-  product.location = null
+  
 
-  product.createdAt = msToTime(new Date().getTime() + Math.abs((new Date().getTimezoneOffset() * 60000))) 
-  product.day = new Date().getDay()
-  product.year = new Date().getFullYear()
+  product.createdAt = new Date()
+  
 
   // console.log(clientActions.createdAt)
 
@@ -222,5 +220,36 @@ exports.removeProduct = async (req,res,next) => {
 );
 
 res.json({success: true, message: "product removed"});
+
+}
+
+exports.getProduct = async (req,res,next) => {
+  let data = []
+
+  function compare( a, b ) {
+    if ( a.createdAt < b.createdAt ){
+      return -1;
+    }
+    if ( a.createdAt > b.createdAt ){
+      return 1;
+    }
+    return 0;
+  }
+
+   const client = await Userdb.find({})
+
+    client.forEach(client => {
+        if(client.product.length > 0){
+          client.product.forEach(prd => {
+            prd.username = client.username
+            prd.firstName = client.firstName
+            prd.lastName = client.lastName
+            data.push(prd)
+          })
+        }
+      })           
+    data.sort(compare).reverse()  
+    // console.log(data)
+  res.json({success: true, data})
 
 }

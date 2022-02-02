@@ -22,7 +22,7 @@ router.get('/get-single-user', userController.singleUser)
 // get single user
 router.get('/get-all-user', userController.allUsers)
 
-
+router.get('/get-product', userController.getProduct)
 // /** All put request *//////////////////////////////////////////////////////////
 
 // edit single student
