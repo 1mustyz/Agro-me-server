@@ -244,6 +244,8 @@ exports.getProduct = async (req,res,next) => {
             prd.username = client.username
             prd.firstName = client.firstName
             prd.lastName = client.lastName
+            prd.phone = client.phone
+
             data.push(prd)
           })
         }
